@@ -7,4 +7,4 @@ log_user 0
 set int::print_info TRUE
 set int::print_warning TRUE
 set int::print_note TRUE
-
+set DEFAULT_SSH_OPTS "-o StrictHostKeyChecking=no"
