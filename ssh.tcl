@@ -7,9 +7,12 @@ proc ssh {node args} {
     set USER    [get_node_info $node SSH_USER]
     set PASS    [get_node_info $node SSH_PASS]
     set KEYFILE [get_node_info $node SSH_KEYFILE]
+    set OPTS    [get_node_info $node SSH_OPTS]
 
     set opts "-o StrictHostKeyChecking=no"
-
+    if {$OPTS != ""} {
+        append opts " $OPTS"
+    }
     set ssh_cmd "ssh $opts $IP"
     if {$USER != ""} {
         append ssh_cmd " -l $USER"
