@@ -1,0 +1,22 @@
+language: generic
+env: 
+  - TCL_VERSION=8.5.7
+  - TCL_VERSION=8.5.13
+  - TCL_VERSION=8.6.0
+install:
+  - curl -L "http://prdownloads.sourceforge.net/tcl/tcl${TCL_VERSION}-src.tar.gz" | tar xzfv -
+  - cd "tcl${TCL_VERSION}/unix"
+  - ./configure
+  - make
+  - sudo make install
+  - sudo ln -sf "/usr/local/bin/tclsh$(echo $TCL_VERSION | sed -e 's/\.[0-9]*$//')" /usr/local/bin/tclsh
+  - cd ../..
+  - curl -L "http://prdownloads.sourceforge.net/Expect/expect5.45.tar.gz" | tar zxvf -
+  - curl -L "http://skylink.dl.sourceforge.net/project/expect/Expect/5.45/expect5.45.tar.gz" |tar zxvf -
+  - cd expect5.45
+  - ./configure
+  - make
+  - sudo make install
+script:
+cd unit_tests
+./run.sh
